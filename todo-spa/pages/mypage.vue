@@ -9,7 +9,6 @@
 </template>
 
 <script>
-import firebase from "@/plugins/firebase";
 export default {
   computed: {
     user() {
@@ -18,23 +17,7 @@ export default {
   },
   methods: {
     logOut() {
-      firebase
-        .auth()
-        .signOut()
-        .then(() => {
-          this.$store.commit("setFlash", {
-            status: true,
-            message: "ログアウトしました"
-          });
-          setTimeout(() => {
-            this.$store.commit("setFlash",{});
-          }, 2000);
-          this.$store.commit("setUser", null);
-          this.$router.push("/login");
-        })
-        .catch(error => {
-          console.log(error);
-        });
+      this.$store.dispatch("logOut");
     }
   }
 };

@@ -6,7 +6,7 @@ Vue.use(Vuex)
 const store = () => {
   return new Vuex.Store({
     state: {
-      currentUser: null,
+      currentUser: {},
       loading: false,
       flash: {
         status: false,

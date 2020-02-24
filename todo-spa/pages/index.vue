@@ -26,6 +26,16 @@ export default {
       todos: []
     };
   },
+  fetch({ store, redirect }) {
+    store.watch(
+      state => state.currentUser,
+      (newUser, oldUser) => {
+        if (!newUser) {
+          return redirect("/login");
+        }
+      }
+    );
+  },
   methods: {
     async addTodo(todo) {
       const { data } = await axios.post("/v1/todos", { todo });
@@ -33,7 +43,7 @@ export default {
         ...this.user,
         todos: [...this.user.todos, data] 
       });
-    }
+    },
   }
 };
 </script>

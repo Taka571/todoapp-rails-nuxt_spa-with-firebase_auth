@@ -22,6 +22,13 @@ export default {
         .auth()
         .signOut()
         .then(() => {
+          this.$store.commit("setFlash", {
+            status: true,
+            message: "ログアウトしました"
+          });
+          setTimeout(() => {
+            this.$store.commit("setFlash",{});
+          }, 2000);
           this.$store.commit("setUser", null);
           this.$router.push("/login");
         })

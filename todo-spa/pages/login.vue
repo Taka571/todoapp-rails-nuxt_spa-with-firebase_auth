@@ -36,6 +36,13 @@ export default {
         .auth()
         .signInWithEmailAndPassword(this.email, this.password)
         .then(() => {
+          this.$store.commit("setFlash", {
+            status: true,
+            message: "ログインしました"
+          });
+          setTimeout(() => {
+            this.$store.commit("setFlash",{});
+          }, 2000);
           this.$router.push("/");
         })
         .catch(error => {

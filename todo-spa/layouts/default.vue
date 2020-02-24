@@ -1,5 +1,8 @@
 <template>
   <v-app dark>
+    <div>
+      <Loading></Loading>
+    </div>
     <v-navigation-drawer v-model='drawer' :mini-variant='miniVariant' :clipped='clipped' fixed app>
       <v-list>
         <v-list-item v-for='(item, i) in items' :key='i' :to='item.to' router exact>
@@ -51,7 +54,11 @@
 </template>
 
 <script>
+import Loading from "@/components/Loading";
 export default {
+  components: {
+    Loading
+  },
   computed: {
     user() {
       return this.$store.state.currentUser;
